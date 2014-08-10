@@ -1,0 +1,22 @@
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+ 
+<p>
+  <strong>Place:</strong>
+  <%= @product.place %>
+</p>
+
+<p>
+  <strong>成分:</strong>
+  <%= @product.elements %>
+</p>
+
+<p>
+  <strong>售价:</strong>
+  <%= @product.price %>
+</p>
+
+<%= link_to 'Back', admin_products_path %>
+| <%= link_to 'Edit', edit_admin_product_path(@product) %>
