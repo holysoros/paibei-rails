@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.string :place
       t.text :elements
-      t.string :image
       t.integer :price
       t.integer :index
 

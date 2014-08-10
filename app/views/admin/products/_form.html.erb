@@ -33,6 +33,11 @@
   <p>
     <%= f.label :image, '产品图片'%><br>
     <%= f.file_field :image %>
+    <% if @product.image.file? %>
+      </br>
+      <%= image_tag @product.image.url(:thumb) %>
+      <p><%= @product.image_file_name %> @ <%= @product.image_updated_at %></p>
+    <% end %>
   </p>
 
   <p>
