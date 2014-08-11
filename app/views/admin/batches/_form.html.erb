@@ -1,0 +1,36 @@
+<%= form_for [:admin, @batch] do |f| %>
+  <% if @batch.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@batch.errors.count, "error") %> prohibited
+      this batch from being saved:</h2>
+    <ul>
+    <% @batch.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :product_id, '商品名称' %><br>
+    <%= f.collection_select :product_id, Product.all, :id, :name %>
+  </p>
+
+  <p>
+    <%= f.label :dist_place, '经销地域'%><br>
+    <%= f.collection_select :dist_place, Paibei::PRIVINCES, :first, :last %>
+  </p>
+ 
+  <p>
+    <%= f.label :count, '批次数量' %><br>
+    <%= f.text_field :count %>
+  </p>
+
+  <p>
+    <%= f.label :verify_time, '二维码验证次数'%><br>
+    <%= f.text_field :verify_time %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

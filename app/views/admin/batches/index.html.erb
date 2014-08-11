@@ -1,0 +1,60 @@
+<h1>Listing batches</h1>
+ 
+<%= link_to 'New batch', new_admin_batch_path %>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Batches</h3>    
+                    </div><!-- /.box-header -->
+
+                    <a class="btn btn-app" id="add">
+                        <i class="fa fa-file-o"></i> Add
+                    </a>
+
+                    <div class="box-body table-responsive">
+                        <table id="news_table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>经销地域</th>
+                                    <th>数量</th>
+                                    <th>生成时间</th>
+                                    <th>下载地址</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @batches.each do |batch| %>
+                                <tr>
+                                    <td><%= batch.product.name %></td>
+                                    <td><%= Paibei::PRIVINCES[batch.dist_place].last %></td>
+                                    <td><%= batch.count %></td>
+                                    <td><%= batch.created_at %></td>
+                                    <%#<td><a href="http://112.124.117.97:8080/${batch.bid}.zip">下载</a></td>%>
+                                    <%#<td><button class="btn btn-default delete_btn" id="${batch.id}">删除</button></td>%>
+                                    <td><%= link_to 'Show', admin_batch_path(batch) %></td>
+                                    <td><%= link_to 'Edit', edit_admin_batch_path(batch) %></td>
+                                    <td><%= link_to 'Destroy', admin_batch_path(batch),
+                                                method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>经销地</th>
+                                    <th>数量</th>
+                                    <th>生成时间</th>
+                                    <th>下载地址</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
+    </section><!-- /.content -->

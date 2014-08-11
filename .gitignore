@@ -36,3 +36,7 @@ build/
 *~
 *.swp
 /log/
+Gemfile.lock
+*.sqlite3
+/db/schema.rb
+/public/system/

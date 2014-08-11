@@ -1,0 +1,53 @@
+<section class="content">
+<div class="row">
+    <div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+        <h3 class="box-title">Batches</h3>
+        </div><!-- /.box-header -->
+
+        <form role="form" accept-charset="UTF-8" id="news_form" method="post" enctype="multipart/form-data">
+        <div class="box-body table-responsive">
+            <table id="news_table" class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td>批次 ID:</td>
+                <td><%= @batch.bid %></td>
+            </tr>
+            <tr>
+                <td>生成时间:</td>
+                <td><%= @batch.created_at %></td>
+            </tr>
+            <tr>
+                <td>商品名称:</td>
+                <td><%= @batch.product.name %></td>
+            </tr>
+            <tr>
+                <td>经销地域:</td>
+                <td><%= Paibei::PRIVINCES[@batch.dist_place].last %></td>
+            </tr>
+            <tr>
+                <td>二维码验证次数:</td>
+                <td><%= @batch.verify_time %></td>
+            </tr>
+            <tr>
+                <td>标签文件:</td>
+                <td><input type="file" name="nfc_file" id="nfc_file"></td>
+            </tr>
+            </tbody>
+            </table>
+        </div><!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+        </form>
+    </div><!-- /.box -->
+    </div>
+</div>
+
+</section><!-- /.content -->
+
+
+<%= link_to 'Back', admin_batches_path %>
+| <%= link_to 'Edit', edit_admin_batch_path(@batch) %>

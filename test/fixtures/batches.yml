@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 
+  dist_place: MyString
+  count: 1
+  verify_time: 1
+  bid: MyString
+
+two:
+  product_id: 
+  dist_place: MyString
+  count: 1
+  verify_time: 1
+  bid: MyString
