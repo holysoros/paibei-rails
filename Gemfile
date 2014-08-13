@@ -38,4 +38,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use paperclip to handle file upload
 gem "paperclip", "~> 4.1"
+# Use sidekiq to background executing task
+gem 'sidekiq'
+# Use rqrcode_png and chunky_png to generate qrcode image
+gem 'chunky_png'
+gem 'rqrcode_png'
+# Use rubyzip to pack all qrcode images into a zip file
+gem 'rubyzip'

@@ -8,6 +8,7 @@ class Admin::BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
   
     if @batch.save
+      HardWorker.perform_async(@batch.bid, @batch.count, @batch.verify_time)
       redirect_to admin_batch_path(@batch)
     else
       render 'new'
