@@ -1,6 +1,6 @@
 class Admin::BatchesController < ApplicationController
   def new
-    @product = Product.find(1)
+    @product = Product.first
     @batch = Batch.new(product: @product, dist_place: 0, verify_time: 1)
   end
 
