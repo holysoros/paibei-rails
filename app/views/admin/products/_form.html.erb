@@ -1,46 +1,64 @@
-<%= form_for [:admin, @product] do |f| %>
-  <% if @product.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@product.errors.count, "error") %> prohibited
-      this product from being saved:</h2>
-    <ul>
-    <% @product.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Product</h3>
+      </div><!-- /.box-header -->
+
+        <%= form_for [:admin, @product] do |f| %>
+          <% if @product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited
+              this product from being saved:</h2>
+            <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+          <% end %>
+
+          <div class="box-body">
+            <div class="form-group">
+              <%= f.label :name, '名称' %><br>
+              <%= f.text_field :name, :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :place, '产地'%><br>
+              <%= f.text_field :place, :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :elements, '成分' %><br>
+              <%= f.text_area :elements, :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :price, '售价'%><br>
+              <%= f.text_field :price, :class => 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :image, '产品图片'%><br>
+              <%= f.file_field :image %>
+              <% if @product.image.file? %>
+                </br>
+                <%= image_tag @product.image.url(:thumb) %>
+                <p><%= @product.image_file_name %> @ <%= @product.image_updated_at %></p>
+              <% end %>
+            </div>
+
+          </div><!-- /.box-body -->
+
+          <div class="box-footer">
+            <%= f.submit '保存', :class => 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+    </div><!-- /.box -->
   </div>
-  <% end %>
-  <p>
-    <%= f.label :name, '名称' %><br>
-    <%= f.text_field :name %>
-  </p>
+</div>
 
-  <p>
-    <%= f.label :place, '产地'%><br>
-    <%= f.text_field :place %>
-  </p>
- 
-  <p>
-    <%= f.label :elements, '成分' %><br>
-    <%= f.text_area :elements %>
-  </p>
-
-  <p>
-    <%= f.label :price, '售价'%><br>
-    <%= f.text_field :price %>
-  </p>
- 
-  <p>
-    <%= f.label :image, '产品图片'%><br>
-    <%= f.file_field :image %>
-    <% if @product.image.file? %>
-      </br>
-      <%= image_tag @product.image.url(:thumb) %>
-      <p><%= @product.image_file_name %> @ <%= @product.image_updated_at %></p>
-    <% end %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+</section><!-- /.content -->

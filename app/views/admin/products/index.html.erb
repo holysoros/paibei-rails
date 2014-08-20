@@ -1,24 +1,46 @@
 <h1>Listing products</h1>
- 
-<%= link_to 'New product', new_admin_product_path %>
-<table>
-  <tr>
-    <th>名称</th>
-    <th>产地</th>
-    <th>成分</th>
-    <th>售价</th>
-  </tr>
- 
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= product.name %></td>
-      <td><%= product.place %></td>
-      <td><%= product.elements %></td>
-      <td><%= product.price %></td>
-      <td><%= link_to 'Show', admin_product_path(product) %></td>
-      <td><%= link_to 'Edit', edit_admin_product_path(product) %></td>
-      <td><%= link_to 'Destroy', admin_product_path(product),
-                    method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Products</h3>
+      </div><!-- /.box-header -->
+
+      <a class="btn btn-app" href="${request.route_url('add_product_page')}" id="add">
+        <i class="fa fa-file-o"></i> Add
+      </a>
+
+      <div class="box-body table-responsive">
+        <table id="news_table" class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>产地</th>
+              <th>成分</th>
+              <th>售价</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td><%= link_to product.name, admin_product_path(product) %></td>
+                <td><%= product.place %></td>
+                <td><%= product.elements %></td>
+                <td><%= product.price %></td>
+                <td><%= link_to '编辑', edit_admin_product_path(product) %>
+                    <%= link_to '删除', admin_product_path(product),
+                      method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  </div>
+</div>
+
+</section><!-- /.content -->
