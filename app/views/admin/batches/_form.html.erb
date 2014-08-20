@@ -1,36 +1,54 @@
-<%= form_for [:admin, @batch] do |f| %>
-  <% if @batch.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@batch.errors.count, "error") %> prohibited
-      this batch from being saved:</h2>
-    <ul>
-    <% @batch.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">批次</h3>
+      </div><!-- /.box-header -->
+
+        <%= form_for [:admin, @batch] do |f| %>
+          <% if @batch.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@batch.errors.count, "error") %> prohibited
+              this batch from being saved:</h2>
+            <ul>
+            <% @batch.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+          <% end %>
+
+          <div class="box-body">
+            <div class="form-group">
+              <%= f.label :product_id, '商品名称' %><br>
+              <%= f.collection_select :product_id, Product.all, :id, :name %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :dist_place, '经销地域'%><br>
+              <%= f.collection_select :dist_place, Paibei::PRIVINCES, :first, :last %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :count, '批次数量' %><br>
+              <%= f.text_field :count %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :verify_time, '二维码验证次数'%><br>
+              <%= f.text_field :verify_time %>
+            </div>
+
+          </div><!-- /.box-body -->
+
+          <div class="box-footer">
+            <%= f.submit '保存', :class => 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+    </div><!-- /.box -->
   </div>
-  <% end %>
-  <p>
-    <%= f.label :product_id, '商品名称' %><br>
-    <%= f.collection_select :product_id, Product.all, :id, :name %>
-  </p>
+</div>
 
-  <p>
-    <%= f.label :dist_place, '经销地域'%><br>
-    <%= f.collection_select :dist_place, Paibei::PRIVINCES, :first, :last %>
-  </p>
- 
-  <p>
-    <%= f.label :count, '批次数量' %><br>
-    <%= f.text_field :count %>
-  </p>
-
-  <p>
-    <%= f.label :verify_time, '二维码验证次数'%><br>
-    <%= f.text_field :verify_time %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+</section><!-- /.content -->
