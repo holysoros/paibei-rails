@@ -8,9 +8,9 @@
         <h3 class="box-title">Products</h3>
       </div><!-- /.box-header -->
 
-      <a class="btn btn-app" href="${request.route_url('add_product_page')}" id="add">
-        <i class="fa fa-file-o"></i> Add
-      </a>
+      <%= link_to new_admin_product_path, :class => 'btn btn-app' do %>
+        <i class="fa fa-file-o"></i> 创建
+      <% end %>
 
       <div class="box-body table-responsive">
         <table id="news_table" class="table table-bordered table-striped">
