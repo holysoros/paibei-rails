@@ -1,0 +1,2 @@
+module Admin::NfcsHelper
+end

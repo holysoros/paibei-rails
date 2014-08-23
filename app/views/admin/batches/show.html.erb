@@ -31,8 +31,12 @@
                 <td><%= @batch.verify_time %></td>
             </tr>
             <tr>
-                <td>标签文件:</td>
-                <td><input type="file" name="nfc_file" id="nfc_file"></td>
+                <td>二维码记录:</td>
+                <td><%= @batch.qrcode_records.count %></td>
+            </tr>
+            <tr>
+                <td>NFC记录:</td>
+                <td><%= @batch.nfc_records.count %></td>
             </tr>
             </tbody>
             </table>

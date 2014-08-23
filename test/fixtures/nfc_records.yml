@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nfc_id: MyString
+  batch_id: 
+
+two:
+  nfc_id: MyString
+  batch_id: 

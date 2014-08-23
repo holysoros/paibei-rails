@@ -8,7 +8,12 @@ class Admin::BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
   
     if @batch.save
-      HardWorker.perform_async(@batch.bid, @batch.count, @batch.verify_time)
+      HardWorker.perform_async(@batch.id)
+
+      if params[:batch][:nfc]
+        import_nfc(@batch, params[:batch][:nfc])
+      end
+
       redirect_to admin_batch_path(@batch)
     else
       render 'new'
@@ -27,6 +32,10 @@ class Admin::BatchesController < ApplicationController
     @batch = Batch.find(params[:id])
 
     if @batch.update(batch_params)
+      if params[:batch][:nfc]
+        import_nfc(@batch, params[:batch][:nfc])
+      end
+
       redirect_to admin_batch_path(@batch)
     else
       render 'edit'
@@ -47,5 +56,12 @@ class Admin::BatchesController < ApplicationController
   private
     def batch_params
       params.require(:batch).permit(:product_id, :dist_place, :count, :verify_time)
+    end
+
+    def import_nfc(batch, nfc_file)
+      for line in nfc_file.open
+        nfc_id = line.strip.downcase
+        batch.nfc_records.create(:nfc_id => nfc_id)
+      end
     end
 end

@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, :batches
 
+    resources :batches do
+      resources :qrcodes
+      resources :nfcs
+    end
+
     resources :sessions, only: [:new, :create, :destroy]
     get '/signin',  to: 'sessions#new'
     delete '/signout', to: 'sessions#destroy'

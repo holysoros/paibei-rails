@@ -5,13 +5,11 @@ require 'zip/zip_file_generator'
 
 class HardWorker
   include Sidekiq::Worker
-  def perform(bid, count, verify_time)
+  def perform(batch_id)
     host = 'http://112.124.117.97/'
     zip_dir = '/usr/share/nginx/html'
 
     Dir.mktmpdir('qrcode') do |tmpdir|
-      logger.info "Doing hard work, #{bid}, #{count} in #{tmpdir}"
-
       width, height = 800, 800
       icon = ChunkyPNG::Image.from_file('app/assets/images/icon_new.png')
       icon = icon.resize(width / 3, height / 3)
@@ -19,13 +17,14 @@ class HardWorker
       offset_x = (width - icon.width) / 2
       offset_y = (height - icon.height) / 2
 
-      count.times do |i|
-        record = QrcodeRecord.create(batch_id: bid, left_time: verify_time)
+      batch = Batch.find(batch_id)
+      batch.count.times do |i|
+        record = batch.qrcode_records.create(index: i, left_time: batch.verify_time)
         url = host + record.sn
         filepath = File.join(tmpdir, record.sn + '.png')
         generate_qrcode(url, filepath, icon, offset_x, offset_y)
       end
-      zip = ZipDir::ZipFileGenerator.new(tmpdir, File.join(zip_dir, bid + '.zip'))
+      zip = ZipDir::ZipFileGenerator.new(tmpdir, File.join(zip_dir, batch.bid + '.zip'))
       zip.write
     end
   end

@@ -1,5 +1,7 @@
 class Batch < ActiveRecord::Base
   belongs_to :product
+  has_many :qrcode_records, dependent: :destroy
+  has_many :nfc_records, dependent: :destroy
 
   before_create :get_bid
 
