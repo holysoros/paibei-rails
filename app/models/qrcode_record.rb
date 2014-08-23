@@ -6,7 +6,7 @@ class QrcodeRecord < ActiveRecord::Base
   def set_sn
     1.times do
       candidate_sn = self.class.id_generator(6)
-      redo if self.class.find_by sn: candidate_sn
+      redo if self.class.exists?(:sn => candidate_sn)
       self.sn = candidate_sn
     end
   end
