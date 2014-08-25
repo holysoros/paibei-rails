@@ -18,6 +18,8 @@ class MobileController < ApplicationController
 
   def qrcode_verify_result
     @qrcode_record = QrcodeRecord.find_by sn: params[:qrcode_sn]
+    @qrcode_record.left_time -= 1
+    @qrcode_record.save
   end
 
   def contact_us

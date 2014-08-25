@@ -39,7 +39,7 @@
 <script>
   $(function () {
     $('#contact_us').click(function () {
-      $(location).attr('href', "${request.route_url('contact_us')}");
+      $(location).attr('href', "<%= url_for :controller => 'mobile', :action => 'contact_us' %>");
     });
   });
 </script>
