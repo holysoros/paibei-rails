@@ -8,7 +8,13 @@
     <%= stylesheet_link_tag    'mobile', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'mobile', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-
+    <style type="text/css">
+      .features{
+        background: url(<%= asset_path 'page_bg.png' %>);
+        padding: 20px 10px 0 10px;
+        text-align: center;
+      }
+    </style>
     <script type="application/x-javascript"></script>
     <%#<link href="${request.static_url('paibei:static/mobile/css/theme-style.css')}" rel='stylesheet' type='text/css' />%>
     <%#<link  href="${request.static_url('paibei:static/mobile/css/jquery.mobile-1.4.2.min.css')}" rel="Stylesheet" type="text/css" />%>
