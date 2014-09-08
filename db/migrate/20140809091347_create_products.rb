@@ -5,7 +5,6 @@ class CreateProducts < ActiveRecord::Migration
       t.string :place
       t.text :elements
       t.integer :price
-      t.integer :index
 
       t.timestamps
     end
