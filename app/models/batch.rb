@@ -9,6 +9,6 @@ class Batch < ActiveRecord::Base
     def get_bid
       ts = Time.now.strftime("%y%m%d")
       format = '%s-%02d-%02d'
-      self.bid = format % [ts, product.id, dist_place]
+      self.bid = format % [ts, product.id, dist_place + 1]
     end
 end
