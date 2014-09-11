@@ -27,6 +27,7 @@ class HardWorker
       zipfilepath = File.join(zip_dir, batch.bid + '.zip')
       zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
       zip.write
+      puts File.umask
       File.chmod(0644, zipfilepath)
     end
   end

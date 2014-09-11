@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # mobile routes
   get '/nfc/:nfc_id', to: 'mobile#nfc_show'
   get '/:qrcode_sn', to: 'mobile#qrcode_verify', constraints: {qrcode_sn: /[a-zA-Z0-9]{6}/}
@@ -9,6 +10,8 @@ Rails.application.routes.draw do
   # admin routes
   namespace :admin do
     resources :products, :batches
+
+    root 'products#index'
 
     resources :batches do
       resources :qrcodes
