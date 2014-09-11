@@ -24,8 +24,10 @@ class HardWorker
         filepath = File.join(tmpdir, record.sn + '.png')
         generate_qrcode(url, filepath, icon, offset_x, offset_y)
       end
-      zip = ZipDir::ZipFileGenerator.new(tmpdir, File.join(zip_dir, batch.bid + '.zip'))
+      zipfilepath = File.join(zip_dir, batch.bid + '.zip')
+      zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
       zip.write
+      File.chmod(0644, zipfilepath)
     end
   end
 
