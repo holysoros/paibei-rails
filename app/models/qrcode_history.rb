@@ -1,0 +1,2 @@
+class QrcodeHistory < History
+end

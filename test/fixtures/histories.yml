@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_id: 
+  batch_id: 
+  dist_place: 1
+  client_ip: MyString
+  type: 
+  qrcode_record_id: 
+  nfc_record_id: 
+
+two:
+  product_id: 
+  batch_id: 
+  dist_place: 1
+  client_ip: MyString
+  type: 
+  qrcode_record_id: 
+  nfc_record_id: 

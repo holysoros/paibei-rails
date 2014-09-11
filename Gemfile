@@ -47,3 +47,5 @@ gem 'chunky_png'
 gem 'rqrcode_png'
 # Use rubyzip to pack all qrcode images into a zip file
 gem 'rubyzip'
+
+gem 'byebug'
