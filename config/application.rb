@@ -14,7 +14,8 @@ module Paibei
             [16, '江苏'], [17, '辽宁'], [18, '山东'], [19, '陕西'],
             [20, '山西'], [21, '四川'], [22, '云南'], [23, '浙江'],
             [24, '青海'], [25, '海南'], [26, '台湾'], [27, '广西'],
-            [28, '内蒙古'], [29, '宁夏'], [30, '西藏'], [31, '新疆' ]]
+            [28, '内蒙古'], [29, '宁夏'], [30, '西藏'], [31, '新疆' ],
+            [32, '测试']]
 
 
   class Application < Rails::Application
@@ -30,6 +31,6 @@ module Paibei
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.time_zone = 'Beijing'
-    config.active_record.default_timezone = :utc
+    config.active_record.default_timezone = :local
   end
 end
