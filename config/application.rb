@@ -17,6 +17,8 @@ module Paibei
             [28, '内蒙古'], [29, '宁夏'], [30, '西藏'], [31, '新疆' ],
             [32, '测试']]
 
+  USER = {email: 'admin@paibei.com', password: 'paibei'}
+
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,4 +1,4 @@
-class Admin::NfcsController < ApplicationController
+class Admin::NfcsController < Admin::BaseController
   def create
     @batch = Batch.find(params[:batch_id])
     for nfc_id in params[:nfc_file]

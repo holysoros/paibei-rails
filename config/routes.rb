@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   # admin routes
   namespace :admin do
+    get '/signin', to: 'sessions#new', as: 'signin'
+    delete '/signout', to: 'sessions#destroy', as: 'signout'
+
     resources :products, :batches
 
     root 'products#index'

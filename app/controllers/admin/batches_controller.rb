@@ -1,4 +1,4 @@
-class Admin::BatchesController < ApplicationController
+class Admin::BatchesController < Admin::BaseController
   def new
     @product = Product.first
     @batch = Batch.new(product: @product, dist_place: 0, verify_time: 1)
