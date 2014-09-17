@@ -42,8 +42,6 @@
       <h2 class="form-signin-heading">Please sign in</h2>
       <%= f.email_field :email, class: "form-control", placeholder: "邮箱", required: true, autofocus: true %>
       <%= f.password_field :password, class: "form-control", placeholder: "密码", required: true %>
-      <%= f.check_box :remember %>
-      <%= f.label :remember, "Remember me" %>
       <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block" %>
     <% end %>
 
