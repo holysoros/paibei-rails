@@ -13,7 +13,8 @@ class MobileController < ApplicationController
                       dist_place: batch.dist_place,
                       nfc_record: nfc_record,
                       client_ip: request.remote_ip)
-    ret = {prod_place: product.place, image: product.image.url(:medium),
+    ret = {prod_place: product.place,
+           image: URI.join(request.url, product.image.url(:medium)).to_s,
            name: product.name,
            dist_place: Paibei::PRIVINCES[batch.dist_place].last,
            serial: batch.bid}
