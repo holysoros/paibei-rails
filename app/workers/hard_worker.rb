@@ -34,7 +34,7 @@ class HardWorker
   private
   def generate_qrcode(content, outfile, icon, offset_x, offset_y)
     qr = RQRCode::QRCode.new(content, :size => 5, :level => :q ).to_img
-    qr = qr.resize(800, 800)
+    qr = qr.resize(406, 406)
 
     qr.compose!(icon, offset_x, offset_y)
     qr.save(outfile, :fast_rgb)
