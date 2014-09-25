@@ -10,7 +10,7 @@ class HardWorker
     zip_dir = '/usr/share/nginx/html'
 
     Dir.mktmpdir('qrcode') do |tmpdir|
-      width, height = 800, 800
+      width, height = 406, 406
       icon = ChunkyPNG::Image.from_file('app/assets/images/icon_new.png')
       icon = icon.resize(width / 3, height / 3)
 
