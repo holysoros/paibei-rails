@@ -5,7 +5,11 @@ class QrcodeRecord < ActiveRecord::Base
 
   def set_sn
     1.times do
-      candidate_sn = self.class.id_generator(6)
+	  length = 6
+	  if batch.product_id == 5
+	    length = 8
+	  end
+      candidate_sn = self.class.id_generator(length)
       redo if self.class.exists?(:sn => candidate_sn)
       self.sn = candidate_sn
     end

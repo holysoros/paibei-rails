@@ -5,8 +5,11 @@ require 'zip/zip_file_generator'
 
 class HardWorker
   include Sidekiq::Worker
-  def perform(batch_id)
+  def perform(batch_id, product_id)
     host = 'http://112.124.117.97/'
+    if product_id == 5
+	  host = 'http://112.124.117.97/m/'
+	end
     zip_dir = '/usr/share/nginx/html'
 
     Dir.mktmpdir('qrcode') do |tmpdir|

@@ -53,6 +53,38 @@ class MobileController < ApplicationController
     @qrcode_record.save
   end
 
+  def qrcode_m_verify
+    @qrcode_record = QrcodeRecord.find_by sn: params[:qrcode_m_sn]
+    if @qrcode_record and @qrcode_record.left_time > 0
+      batch = @qrcode_record.batch
+      product = batch.product
+      dist_place = batch.dist_place
+      client_ip = request.remote_ip
+      QrcodeHistory.create(batch: batch, product: product,
+                           dist_place: dist_place, qrcode_record: @qrcode_record,
+                           result: 'ok', client_ip: client_ip)
+      render 'qrcode_m_verify'
+    elsif @qrcode_record
+      batch = @qrcode_record.batch
+      product = batch.product
+      dist_place = batch.dist_place
+      client_ip = request.remote_ip
+      QrcodeHistory.create(batch: batch, product: product,
+                           dist_place: dist_place, qrcode_record: @qrcode_record,
+                           result: 'nok', client_ip: client_ip)
+      render 'qrcode_verify_failed', message: '二维码已失效'
+    else
+      QrcodeHistory.create(result: 'invalid', client_ip: client_ip)
+      render 'qrcode_verify_failed', message: '伪造的二维码'
+    end
+  end
+
+  def qrcode_m_verify_result
+    @qrcode_record = QrcodeRecord.find_by sn: params[:qrcode_m_sn]
+    @qrcode_record.left_time -= 1
+    @qrcode_record.save
+  end
+
   def contact_us
   end
 end

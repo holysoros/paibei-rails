@@ -8,7 +8,7 @@ class Admin::BatchesController < Admin::BaseController
     @batch = Batch.new(batch_params)
   
     if @batch.save
-      HardWorker.perform_async(@batch.id)
+      HardWorker.perform_async(@batch.id, @batch.product_id)
 
       if params[:batch][:nfc]
         import_nfc(@batch, params[:batch][:nfc])
