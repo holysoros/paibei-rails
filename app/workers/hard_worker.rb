@@ -5,38 +5,23 @@ require 'zip/zip_file_generator'
 
 class HardWorker
   include Sidekiq::Worker
-  def perform(batch_id, product_id)
+  def perform(batch_id, batch_bid, product_id)
     host = 'http://112.124.117.97/'
     if product_id == 5
-	  host = 'http://112.124.117.97/m/'
-	end
-    zip_dir = '/usr/share/nginx/html'
-	file_name = zip_dir + batch_id + ".txt" 
+      host = 'http://112.124.117.97/m/'
+    end
+    zip_dir = '/usr/share/nginx/html/'
+    file_name = zip_dir + batch_id + ".txt"
 
-    Dir.mktmpdir('qrcode') do |tmpdir|
-      #width, height = 406, 406
-      #icon = ChunkyPNG::Image.from_file('app/assets/images/icon_new.png')
-      #icon = icon.resize(width / 3, height / 3)
-
-      #offset_x = (width - icon.width) / 2
-      #offset_y = (height - icon.height) / 2
-
+    File.open(file_name, "a+"){|file|
       batch = Batch.find(batch_id)
       batch.count.times do |i|
         record = batch.qrcode_records.create(index: i, left_time: batch.verify_time)
-        url = host + record.sn
-		File.open(file_name, "a+"){|file| 
-			file.puts(url)
-			file.close 
-		}
-        #filepath = File.join(tmpdir, record.sn + '.png')
-        #generate_qrcode(url, filepath, icon, offset_x, offset_y)
+        url = host + record.sn + ","
+        file.puts(url)
       end
-      #zipfilepath = File.join(zip_dir, batch.bid + '.zip')
-      #zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
-      #zip.write
-      #File.chmod(0644, zipfilepath)
-    end
+      file.close
+    }
   end
 
   private
