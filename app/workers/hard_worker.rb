@@ -11,26 +11,31 @@ class HardWorker
 	  host = 'http://112.124.117.97/m/'
 	end
     zip_dir = '/usr/share/nginx/html'
+	file_name = zip_dir + batch_id + ".txt" 
 
     Dir.mktmpdir('qrcode') do |tmpdir|
-      width, height = 406, 406
-      icon = ChunkyPNG::Image.from_file('app/assets/images/icon_new.png')
-      icon = icon.resize(width / 3, height / 3)
+      #width, height = 406, 406
+      #icon = ChunkyPNG::Image.from_file('app/assets/images/icon_new.png')
+      #icon = icon.resize(width / 3, height / 3)
 
-      offset_x = (width - icon.width) / 2
-      offset_y = (height - icon.height) / 2
+      #offset_x = (width - icon.width) / 2
+      #offset_y = (height - icon.height) / 2
 
       batch = Batch.find(batch_id)
       batch.count.times do |i|
         record = batch.qrcode_records.create(index: i, left_time: batch.verify_time)
         url = host + record.sn
-        filepath = File.join(tmpdir, record.sn + '.png')
-        generate_qrcode(url, filepath, icon, offset_x, offset_y)
+		File.open(file_name, "a+"){|file| 
+			file.puts(url)
+			file.close 
+		}
+        #filepath = File.join(tmpdir, record.sn + '.png')
+        #generate_qrcode(url, filepath, icon, offset_x, offset_y)
       end
-      zipfilepath = File.join(zip_dir, batch.bid + '.zip')
-      zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
-      zip.write
-      File.chmod(0644, zipfilepath)
+      #zipfilepath = File.join(zip_dir, batch.bid + '.zip')
+      #zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
+      #zip.write
+      #File.chmod(0644, zipfilepath)
     end
   end
 
