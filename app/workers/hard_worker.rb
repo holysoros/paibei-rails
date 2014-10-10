@@ -11,7 +11,7 @@ class HardWorker
       host = 'http://112.124.117.97/m/'
     end
     zip_dir = '/usr/share/nginx/html/'
-    file_name = zip_dir + batch_id + ".txt"
+    file_name = zip_dir + batch_bid + ".txt"
 
     File.open(file_name, "a+"){|file|
       batch = Batch.find(batch_id)
