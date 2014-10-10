@@ -31,7 +31,7 @@
                 <td><%= Paibei::PRIVINCES[batch.dist_place].last %></td>
                 <td><%= batch.count %></td>
                 <td><%= batch.created_at.strftime('%F %T') %></td>
-                <td><a href='<%= "http://112.124.117.97:8080/#{batch.bid}.txt" %>'">下载</a></td>
+                <td><a href='<%= "http://112.124.117.97:8080/#{batch.bid}.zip" %>'">下载</a></td>
                 <td><%= link_to '删除', admin_batch_path(batch),
                   method: :delete, data: { confirm: '删除批次可能造成数据不一致，确定删除吗？' } %></td>
               </tr>

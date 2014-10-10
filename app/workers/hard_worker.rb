@@ -11,17 +11,25 @@ class HardWorker
       host = 'http://112.124.117.97/m/'
     end
     zip_dir = '/usr/share/nginx/html/'
-    file_name = zip_dir + batch_bid + ".txt"
-
-    File.open(file_name, "a+"){|file|
+	
+	Dir.mktmpdir('qrcode') do |tmpdir|
+      file_name = tmpdir + "/" + batch_bid + ".txt"
       batch = Batch.find(batch_id)
-      batch.count.times do |i|
-        record = batch.qrcode_records.create(index: i, left_time: batch.verify_time)
-        url = host + record.sn + ","
-        file.puts(url)
-      end
-      file.close
-    }
+	  
+      File.open(file_name, "a+"){|file|
+        batch.count.times do |i|
+          record = batch.qrcode_records.create(index: i, left_time: batch.verify_time)
+          url = host + record.sn + ","
+          file.puts(url)
+        end
+        file.close
+      }	  
+	  
+      zipfilepath = File.join(zip_dir, batch.bid + '.zip')
+      zip = ZipDir::ZipFileGenerator.new(tmpdir, zipfilepath)
+      zip.write
+      File.chmod(0644, zipfilepath)
+    end
   end
 
   private
