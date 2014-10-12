@@ -72,10 +72,10 @@ class MobileController < ApplicationController
       QrcodeHistory.create(batch: batch, product: product,
                            dist_place: dist_place, qrcode_record: @qrcode_record,
                            result: 'nok', client_ip: client_ip)
-      render 'qrcode_verify_failed', message: '二维码已失效'
+      render 'qrcode_m_verify_failed', message: '二维码已失效'
     else
       QrcodeHistory.create(result: 'invalid', client_ip: client_ip)
-      render 'qrcode_verify_failed', message: '伪造的二维码'
+      render 'qrcode_m_verify_failed', message: '伪造的二维码'
     end
   end
 
