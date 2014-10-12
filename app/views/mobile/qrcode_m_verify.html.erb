@@ -1,0 +1,43 @@
+<div data-role="page">
+  <div id="fea" class="features_m">
+    <div class="head text-center">
+      <br/>
+      <br/>
+      <br/>
+    </div>
+    <div style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center; text-shadow:none;">米亚尼亚产品防伪验证平台</div>
+    <br/>
+    <br/>
+    <div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">
+      <div style="text-shadow:none;">
+        <img src="<%= asset_path 'warning.png' %>" width="29px" height="26px" />
+        你是否要继续防伪验证
+      </div>
+      <br/>
+      <div style="text-shadow:none;">提示：二维码验证只能使用<%= @qrcode_record.left_time %>次</div>			
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-bar ui-bar-c">
+            <button onclick='location.href="<%= url_for :controller => 'mobile', :action => 'qrcode_verify_result' %>"'>继续</button>
+          </div>
+        </div>
+        <div class="ui-block-b">
+          <div class="ui-bar ui-bar-c">
+            <button onclick='location.href="http://www.131su.cn"'>取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="features-grids text-center">
+      <div class="col-md-3 features-grid">
+        <img src="<%= asset_path 'logo_m.png' %>" width="126px" height="126px" />
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+  </div>
+</div>

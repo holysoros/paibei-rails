@@ -129,6 +129,11 @@ ul#w3-unav-links li {
 	padding: 20px 10px 0 10px;
 	text-align: center;
 }
+.features_m{
+    background:url(../images/page_bg_m.png);
+	padding: 20px 10px 0 10px;
+	text-align: center;
+}
 .head h3{
 	color:#ffffff;
 	font-size:1.2em;
