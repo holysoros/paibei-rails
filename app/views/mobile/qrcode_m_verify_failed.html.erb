@@ -23,7 +23,7 @@
     <br/>
     <div class="features-grids text-center">
       <div class="col-md-3 features-grid">
-        <img src="<%= asset_path 'logo_m.png' %>" width="126px" height="126px" />
+        <img src="<%= asset_path 'logo_m.png' %>" width="180px" height="61px" />
       </div>
     </div>
     <br/>
@@ -39,7 +39,7 @@
 <script>
   $(function () {
     $('#contact_us').click(function () {
-      $(location).attr('href', "<%= url_for :controller => 'mobile', :action => 'contact_us' %>");
+      $(location).attr('href', "<%= url_for :controller => 'mobile', :action => 'contact_us_m' %>");
     });
   });
 </script>

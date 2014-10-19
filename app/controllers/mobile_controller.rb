@@ -87,4 +87,7 @@ class MobileController < ApplicationController
 
   def contact_us
   end
+
+  def contact_us_m
+  end
 end

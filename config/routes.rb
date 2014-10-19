@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/:qrcode_sn', to: 'mobile#qrcode_verify', constraints: {qrcode_sn: /[a-zA-Z0-9]{6}/}
   get '/:qrcode_sn/r', to: 'mobile#qrcode_verify_result', constraints: {qrcode_sn: /[a-zA-Z0-9]{6}/}
   get '/w/c', to: 'mobile#contact_us'
+  get '/m/w/c', to: 'mobile#contact_us_m'
   get '/m/:qrcode_m_sn', to: 'mobile#qrcode_m_verify', constraints: {qrcode_m_sn: /[a-zA-Z0-9]{8}/}
   get '/m/:qrcode_m_sn/r', to: 'mobile#qrcode_m_verify_result', constraints: {qrcode_m_sn: /[a-zA-Z0-9]{8}/}
 
